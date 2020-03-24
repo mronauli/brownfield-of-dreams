@@ -12,7 +12,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bcrypt', '~> 3.1.7'
 
-gem 'webpacker', '~> 3.5'
+gem 'webpacker', '~> 4.x'
 
 gem 'yt', '~> 0.29.1'
 gem 'google-api-client'
@@ -26,7 +26,7 @@ gem 'omniauth-google-oauth2'
 gem 'will_paginate'
 gem 'acts-as-taggable-on', '~> 6.0'
 gem 'omniauth-census', git: "https://github.com/turingschool-projects/omniauth-census"
-
+gem 'rubocop', '~> 0.80.1', require: false
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
