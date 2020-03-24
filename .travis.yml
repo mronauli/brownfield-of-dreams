@@ -1,0 +1,13 @@
+langauge: ruby
+rbenv:
+  - 2.5.3
+addons:
+  postgresql: 9.6
+  chrome: stable
+dist: trusty
+before_script:
+  - rm -r spec/cassettes
+script:
+  - yarn add stimulus
+  - bundle exec rails db:{create,migrate} RAILS_ENV=test
+  - bundle exec rspec
