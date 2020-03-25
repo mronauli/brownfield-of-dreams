@@ -6,7 +6,7 @@ rbenv:
 addons:
   postgresql: 9.6
   chrome: stable
-dist: xenial
+dist: trusty
 before_script:
   - rm -rf spec/cassettes
 script:
