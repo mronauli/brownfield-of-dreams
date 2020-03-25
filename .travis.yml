@@ -9,7 +9,6 @@ addons:
   chrome: stable
 dist: trusty
 before_script:
-  - npm install -g gulp-cli@4.0
   - rm -rf spec/cassettes
 script:
   - yarn add stimulus
