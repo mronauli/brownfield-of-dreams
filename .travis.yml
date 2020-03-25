@@ -13,3 +13,9 @@ script:
   - yarn add stimulus
   - bundle exec rails db:{create,migrate} RAILS_ENV=test
   - bundle exec rspec
+secure: "ewP8nWaOyYiXljHJxK6MIh/ndnVYCp9McvX/xaWwhdAW6eWR/EyWo0Yxo01kSyRN71lhW6bIMJB/j//89jzBGajn4mLZCEwFdu6BOdDbIe4YSFobnebIwpECja
+tBX/6Ua5yQepxf+JvCghlhqGWbg8gohRR67Kp5tbMidmWNBxuN3IxZjEQ5mUFjWTx3p8NfKnDn0bOVu/6GOcGAv0szttzQMtv2tGOMHCoCB4sVqmaPes/AB0I4pk/XQjaD1+7
+0k2vvOAaOGnMvavtghnzHt7tYWcFj63yQYgzX42iXPXt/20uttf1RXCx7u2x3Y+wTn7XPDKs0z33xJ3gygYH4L36vANZTZ7zH1f6Te9mWhgnEG4R2eBsZLJLSgBkWtSGWMune
+9ZXJzI6FR/Udyjr8a+YMem/0ldo/+SrX8mcDwpqr9nbuSurtqsk5rIN4UqyzT3rDT9jpabrOIo6EoqXX1zFPXU0t9wWgW5/7ctE4WyOjdVSkvnmMEcJUK8U6brQfXr4kgjX3W
+t6Aj/48n7pbM85Av6PqyqfCrq+FGzJp8u6tEC4BfB/Z2SuqmQA9dTQLKq4EBDPnzxeF4HQPHxBiYZmSs/d9LUcJsnoR1HSEFPC4lcDRJl7vjumPcntLbe10F9KVjD1THHODKf
+/9ASgQJq0TkU49hu6qH1wCOPS6E7U="
