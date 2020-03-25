@@ -7,6 +7,10 @@ addons:
   postgresql: 9.6
   chrome: stable
 dist: trusty
+cache:
+  - yarn: true
+install:
+  - yarn install
 before_script:
   - rm -rf spec/cassettes
 script:
