@@ -1,13 +1,9 @@
 class UsersController < ApplicationController
   def show
-    conn = Faraday.new(url: "https://api.github.com") do |f|
-      f.headers["Authorization"] = ENV['GITHUB_ACCESS_TOKEN']
-      f.adapter Faraday.default_adapter
+    repository_data = get_repository_data
+    @repositories = get_repository_data.map do |repo|
+      Repository.new(repo)
     end
-
-    response = conn.get("/user/repos")
-    json = JSON.parse(response.body, symbolize_names: true)
-    @repositories = json[0..4]
   end
 
   def new
@@ -31,4 +27,14 @@ class UsersController < ApplicationController
     params.require(:user).permit(:email, :first_name, :last_name, :password)
   end
 
+  def get_repository_data
+    conn = Faraday.new(url: "https://api.github.com") do |f|
+      f.headers["Authorization"] = ENV['GITHUB_ACCESS_TOKEN']
+      f.adapter Faraday.default_adapter
+    end
+
+    response = conn.get("/user/repos")
+    json = JSON.parse(response.body, symbolize_names: true)
+    return json[0..4]
+  end
 end
