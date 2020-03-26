@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
   def show
-    response = Faraday.get("https://api.github.com/user/repos", {visibility: "all"}, {Authorization: ENV['GITHUB_ACCESS_TOKEN']})
-    # JSON.parse(response.body)
-    # response = Faraday.new
+    github_search_facade = GithubSearchFacade.new
+    @repositories = github_search_facade.get_repositories
   end
 
   def new
@@ -25,5 +24,4 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:email, :first_name, :last_name, :password)
   end
-
 end

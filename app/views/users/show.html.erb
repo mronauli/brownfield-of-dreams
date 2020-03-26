@@ -13,7 +13,11 @@
 </section>
 
 <section id="github_section">
+  <h2>Github:</h2>
+  <h4>Repositories:</h4>
   <% @repositories.each do |repo| %>
-   <%= link_to repo.name, repo.html_url %>
+  <section id="repo">
+   <p><%= link_to repo.name, repo.html_url %></p>
+ </section>
   <% end %>
 </section>
