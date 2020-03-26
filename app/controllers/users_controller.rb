@@ -1,9 +1,7 @@
 class UsersController < ApplicationController
   def show
-    repository_data = get_repository_data
-    @repositories = get_repository_data.map do |repo|
-      Repository.new(repo)
-    end
+    github_search_facade = GithubSearchFacade.new
+    @repositories = github_search_facade.get_repositories
   end
 
   def new
@@ -28,13 +26,13 @@ class UsersController < ApplicationController
   end
 
   def get_repository_data
-    conn = Faraday.new(url: "https://api.github.com") do |f|
-      f.headers["Authorization"] = ENV['GITHUB_ACCESS_TOKEN']
-      f.adapter Faraday.default_adapter
-    end
-
-    response = conn.get("/user/repos")
-    json = JSON.parse(response.body, symbolize_names: true)
-    return json[0..4]
+    # conn = Faraday.new(url: "https://api.github.com") do |f|
+    #   f.headers["Authorization"] = ENV['GITHUB_ACCESS_TOKEN']
+    #   f.adapter Faraday.default_adapter
+    # end
+    #
+    # response = conn.get("/user/repos")
+    # json = JSON.parse(response.body, symbolize_names: true)
+    # return json[0..4]
   end
 end
