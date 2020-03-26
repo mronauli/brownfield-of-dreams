@@ -14,6 +14,15 @@ VCR.configure do |config|
   config.hook_into :webmock
   config.configure_rspec_metadata!
   config.filter_sensitive_data("<YOUTUBE_API_KEY>") { ENV['YOUTUBE_API_KEY'] }
+  config.filter_sensitive_data("<GITHUB_ACCESS_TOKEN>") { ENV['GITHUB_ACCESS_TOKEN'] }
+  record_mode = ENV["VCR"] ? ENV["VCR"].to_sym : :once
+  config.default_cassette_options = { :record => record_mode }
+  # vcr_mode = ENV['VCR_MODE'] =~ /rec/i ? :all : :once
+  #
+  # c.default_cassette_options = {
+  #   record: vcr_mode,
+  #   match_requests_on: %i[method uri body]
+  # }
 end
 
 
