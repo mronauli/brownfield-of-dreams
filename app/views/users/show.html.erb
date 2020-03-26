@@ -17,7 +17,7 @@
   <h4>Repositories:</h4>
   <% @repositories.each do |repo| %>
   <section id="repo">
-   <p><%= link_to repo[:name], repo[:html_url] %></p>
+   <p><%= link_to repo.name, repo.html_url %></p>
  </section>
   <% end %>
 </section>
