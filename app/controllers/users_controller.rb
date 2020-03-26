@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
   def show
+    conn = Faraday.new(url: "https://api.github.com") do |f|
+      f.headers['Authorization'] = "token #{@github_token}"
+    end
   end
 
   def new
