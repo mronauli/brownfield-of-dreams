@@ -12,9 +12,8 @@
   </section>
 </section>
 
-
 <section id="github_section">
   <% @repositories.each do |repo| %>
-   <%= link_to repo.name, repository_pa %>
+   <%= link_to repo.name, repo.html_url %>
   <% end %>
 </section>
