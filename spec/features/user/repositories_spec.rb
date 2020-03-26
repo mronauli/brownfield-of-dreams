@@ -8,24 +8,14 @@ describe "as a logged in user" do
 
     fill_in 'session[email]', with: user.email
     fill_in 'session[password]', with: user.password
-    click_on 'Log In'
 
+    click_on 'Log In'
     expect(current_path).to eq("/dashboard")
 
     within ("#github_section") do
-      expect(repo.count).to eq(5)
-      expect(page).to have_link("reponame")
-      expect(page).to have_link("reponame")
-      expect(page).to have_link("reponame")
-      expect(page).to have_link("reponame")
-      expect(page).to have_link("reponame")
+      expect(page).to have_content("Github")
+      expect(page).to have_css('#repo', count: 5)
+      expect(page).to have_link('pet_shop_paired', href: 'https://github.com/adumortier/pet_shop_paired')
     end
-
-
   end
 end
-# As a logged in user
-# When I visit /dashboard
-# Then I should see a section for "Github"
-# And under that section I should see a list of
-# 5 repositories with the name of each Repo linking to the repo on Github
