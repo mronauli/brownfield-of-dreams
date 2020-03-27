@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   def show
-    github_search_facade = GithubSearchFacade.new
-    @repositories = github_search_facade.get_repositories
+    @github_info = GithubSearchFacade.new
   end
 
   def new
