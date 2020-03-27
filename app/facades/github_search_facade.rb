@@ -14,4 +14,12 @@ class GithubSearchFacade
       Follower.new(follower)
     end
   end
+
+  def get_following
+    service = GithubService.new
+    following_data = service.get_following_data
+    following_data.map do |following|
+      Following.new(following)
+    end
+  end
 end
