@@ -15,9 +15,15 @@
 <section id="github_section">
   <h2>Github:</h2>
   <h4>Repositories:</h4>
-  <% @repositories.each do |repo| %>
-  <section id="repo">
-   <p><%= link_to repo.name, repo.html_url %></p>
- </section>
+  <% @github_info.get_repositories.each do |repo| %>
+    <section id="repo">
+     <p><%= link_to repo.name, repo.html_url %></p>
+   </section>
+  <% end %>
+  <h4>Followers:</h4>
+  <% @github_info.get_followers.each do |follower| %>
+    <section id="followers">
+      <p><%= link_to follower.login, follower.html_url %></p>
+    </section>
   <% end %>
 </section>
