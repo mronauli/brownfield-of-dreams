@@ -1,6 +1,11 @@
 class GithubSearchFacade
+  attr_reader :user_token
+
+  def initialize(user_token)
+    @user_token = user_token
+  end
+
   def get_repositories
-    service = GithubService.new
     repository_data = service.get_repository_data[0..4]
     repository_data.map do |repo|
       Repository.new(repo)
@@ -8,7 +13,6 @@ class GithubSearchFacade
   end
 
   def get_followers
-    service = GithubService.new
     follower_data = service.get_follower_data
     follower_data.map do |follower|
       Follower.new(follower)
@@ -16,10 +20,15 @@ class GithubSearchFacade
   end
 
   def get_following
-    service = GithubService.new
     following_data = service.get_following_data
     following_data.map do |following|
       Following.new(following)
     end
+  end
+
+private
+
+  def service
+    GithubService.new(user_token)
   end
 end

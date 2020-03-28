@@ -4,12 +4,9 @@ describe "as a logged in user" do
   it "can see its repositories on its dashboard", :vcr do
     user = create(:user, token: ENV['GITHUB_ACCESS_TOKEN_2'])
 
-    visit login_path
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+    visit "/dashboard"
 
-    fill_in 'session[email]', with: user.email
-    fill_in 'session[password]', with: user.password
-
-    click_on 'Log In'
     expect(current_path).to eq("/dashboard")
 
     within ("#github_section") do
