@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-describe 'User' do
-  it 'user can sign in', :vcr do
-    user = create(:user)
+describe 'User', :vcr do
+  it 'user can sign in' do
+    user = create(:user, token: ENV['GITHUB_ACCESS_TOKEN_2'])
 
     visit '/'
 
@@ -21,19 +21,19 @@ describe 'User' do
     expect(page).to have_content(user.last_name)
   end
 
-  it 'can log out', :js, :vcr do
+  it 'can log out', :js do
     user = create(:user)
 
-    visit login_path
+    visit '/'
 
-    fill_in'session[email]', with: user.email
-    fill_in'session[password]', with: user.password
+    click_on "Sign In"
+
+    expect(current_path).to eq(login_path)
+
+    fill_in 'session[email]', with: user.email
+    fill_in 'session[password]', with: user.password
 
     click_on 'Log In'
-
-    click_on 'Profile'
-
-    expect(current_path).to eq(dashboard_path)
 
     click_on 'Log Out'
 
