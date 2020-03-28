@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def show
-    @github_info = GithubSearchFacade.new
+    @github_info = GithubSearchFacade.new(current_user.token)
   end
 
   def new
