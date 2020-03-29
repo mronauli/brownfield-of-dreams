@@ -43,4 +43,29 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+  module OmniauthMacros
+    def mock_auth_hash
+      OmniAuth.config.test_mode = true
+      OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(
+        {'provider'=>"github",
+         'uid'=>"55954962",
+         'info'=>
+          {'nickname'=>"mronauli",
+           'email'=>nil,
+           'name'=>"Maria",
+           'image'=>"https://avatars3.githubusercontent.com/u/55954962?v=4",
+           'urls'=>{"GitHub"=>"https://github.com/mronauli", "Blog"=>""}},
+         'credentials'=>{"token"=>ENV["GITHUB_ACCESS_TOKEN_1"], "expires"=>false},
+         'extra'=>
+          {'raw_info'=>
+            {'login'=>"mronauli",
+               'id'=>55954962,
+               'node_i'=>"MDQ6VXNlcjU1OTU0OTYy",
+               'avatar_url'=>"https://avatars3.githubusercontent.com/u/55954962?v=4",
+               'gravatar_id'=>"",
+               'url'=>"https://api.github.com/users/mronauli",
+               'html_url'=>"https://github.com/mronauli",
+      }}})
+    end
+  end
 end
