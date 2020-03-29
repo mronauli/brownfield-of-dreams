@@ -22,7 +22,7 @@ describe 'User', :vcr do
   end
 
   it 'can log out', :js do
-    user = create(:user)
+    user = create(:user, token: ENV['GITHUB_ACCESS_TOKEN_2'])
 
     visit '/'
 
