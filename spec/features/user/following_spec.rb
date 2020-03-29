@@ -10,11 +10,7 @@ describe "as a logged in user" do
     within ("#github_section") do
       expect(page).to have_content("Github")
       expect(page).to have_content("Following:")
-      expect(page).to have_css('#following', count: 1)
-
-      within ("#following") do
-        expect(page).to have_link("mronauli", href: "https://github.com/mronauli")
-      end
+      expect(page).to have_css('#following')
     end
   end
 end
