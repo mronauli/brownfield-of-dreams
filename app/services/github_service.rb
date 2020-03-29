@@ -13,6 +13,8 @@ class GithubService
   def get_follower_data
     response = conn.get("/user/followers")
     json = JSON.parse(response.body, symbolize_names: true)
+    # require "pry"; binding.pry
+
   end
 
   def get_following_data
