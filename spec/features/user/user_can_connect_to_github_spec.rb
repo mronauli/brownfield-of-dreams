@@ -12,7 +12,7 @@ context "as a logged in user" do
       fill_in 'session[password]', with: user.password
 
       click_on 'Log In'
-      save_and_open_page
+      
       visit "/dashboard"
       expect(page).to_not have_content("battleship")
       mock_auth_hash
