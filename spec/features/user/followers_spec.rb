@@ -8,7 +8,7 @@ describe "as a logged in user" do
 
     visit "/dashboard"
     expect(current_path).to eq("/dashboard")
-
+    
     within ("#github_section") do
       expect(page).to have_content("Github")
       expect(page).to have_content("Followers")
