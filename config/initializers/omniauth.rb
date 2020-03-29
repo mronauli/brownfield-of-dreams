@@ -1,4 +1,4 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET']
-  #add github as a provider
+  provider :github, ENV['GITHUB_ID_TEST'], ENV['GITHUB_SECRET_TEST']
 end
