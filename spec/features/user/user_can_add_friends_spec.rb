@@ -4,7 +4,11 @@ RSpec.describe "As a user I can add friends who are in the DB but not those who 
   before :each do
     alex = create(:user, token: ENV['GITHUB_ACCESS_TOKEN_2'])
     maria = create(:user, token: ENV['GITHUB_ACCESS_TOKEN_1'])
-    bob = create(:user)
+    bob = User.new(email: "example@email.com",
+                   first_name: "Bob",
+                   last_name: "Roberts",
+                   password_digest: "password",
+                   role: "default")
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(alex)
   end
@@ -19,14 +23,14 @@ RSpec.describe "As a user I can add friends who are in the DB but not those who 
     within "#followers" do
       expect(page).to have_button("Add as Friend", count: 2)
     end
-
+    save_and_open_page
     within "#following" do
       expect(page).to have_button("Add as Friend", count: 1)
     end
 
-    within "#following" do
-      click_on("Add as Friend")
-    end
+    # within "#following" do
+    #   click_on("Add as Friend")
+    # end
   end
     #
     # expect(current_path).to eq(dashboard_path)
