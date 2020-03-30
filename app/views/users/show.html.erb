@@ -28,8 +28,8 @@
       <section id="followers">
         <% @github_info.get_followers.each do |follower| %>
           <li><%= link_to follower.login, follower.html_url %>
-          <% if follower.html_url != nil %>
-            <%= button_to "Add as Friend", "/friendships/create", method: :post %>
+          <% if follower.find_by_id %>
+            <%= button_to "Add as Friend", "/friendships", method: :post %>
           <% end %>
         <% end %>
       </section>
@@ -37,10 +37,10 @@
       <h4>Following:</h4>
       <section id="following">
         <% @github_info.get_following.each do |following| %>
-            <li><%= link_to following.login, following.html_url %>
-            <% if following.html_url != nil %>
-              <%= button_to "Add as Friend", "/friendships/create/#{following.login}", method: :post %>
-            <% end %>
+        <li><%= link_to following.login, following.html_url %>
+          <% if following.find_by_id %>
+            <%= button_to "Add as Friend", "/friendships", method: :post %>
+          <% end %>
         <% end %>
       </section>
 
