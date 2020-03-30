@@ -34,8 +34,7 @@ Rails.application.routes.draw do
   get "/auth/github", as: "github_login"
   get "/auth/github/callback", to: "sessions#update"
 
-  post "/friendships/create", to: "friendships#create"
-  # resources :friendships, only:[:create]
+  post "/friendships", to: "friendships#create"
 
   # Is this being used?
   get '/video', to: 'video#show'
