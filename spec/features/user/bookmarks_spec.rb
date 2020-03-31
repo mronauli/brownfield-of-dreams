@@ -1,6 +1,12 @@
+# As a logged in user
+# When I visit '/dashboard'
+# Then I should see a list of all bookmarked segments under the Bookmarked Segments section
+# And they should be organized by which tutorial they are a part of
+# And the videos should be ordered by their position
 require 'rails_helper'
+# first video of section output name of section
 
-RSpec.describe UserVideo, type: :model do
+RSpec.describe "as a logged in user", :vcr do
   before :each do
     @prework_tutorial_data = {
       "title"=>"Back End Engineering - Prework",
@@ -124,8 +130,37 @@ RSpec.describe UserVideo, type: :model do
     @bookmark_3 = UserVideo.create(user: @user_1, video: @video_5)
     @bookmark_4 = UserVideo.create(user: @user_1, video: @video_8)
     @bookmark_5 = UserVideo.create(user: @user_1, video: @video_9)
+
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user_1)
   end
-  it "can sort videos by category and position" do
-    expect(UserVideo.order_bookmarked(@user_1.id)).to eq([@video_1, @video_2, @video_5, @video_8, @video_9])
+
+  it "can see a list of all bookmarks in bookmarked segments section organized by tutorial and ordered position" do
+    visit "/dashboard"
+    expect(page).to_not have_content("Back End Engineering - Prework")
+
+    visit "/tutorials/#{@prework_tutorial.id}?video_id=#{@video_1.id}"
+    click_on "Bookmark"
+
+    visit "/tutorials/#{@prework_tutorial.id}?video_id=#{@video_2.id}"
+    click_on "Bookmark"
+
+    visit "/tutorials/#{@m1_tutorial.id}?video_id=#{@video_5.id}"
+    click_on "Bookmark"
+
+    visit "/tutorials/#{@m3_tutorial.id}?video_id=#{@video_9.id}"
+    click_on "Bookmark"
+
+    visit "/tutorials/#{@m3_tutorial.id}?video_id=#{@video_8.id}"
+    click_on "Bookmark"
+
+    visit "/dashboard"
+
+    within '#bookmarks' do
+      expect(page.all('li')[0]).to have_content(@video_1.title)
+      expect(page.all('li')[1]).to have_content(@video_2.title)
+      expect(page.all('li')[2]).to have_content(@video_5.title)
+      expect(page.all('li')[3]).to have_content(@video_8.title)
+      expect(page.all('li')[4]).to have_content(@video_9.title)
+    end
   end
 end
