@@ -1,10 +1,4 @@
-# As a logged in user
-# When I visit '/dashboard'
-# Then I should see a list of all bookmarked segments under the Bookmarked Segments section
-# And they should be organized by which tutorial they are a part of
-# And the videos should be ordered by their position
 require 'rails_helper'
-# first video of section output name of section
 
 RSpec.describe "as a logged in user", :vcr do
   before :each do
@@ -45,7 +39,6 @@ RSpec.describe "as a logged in user", :vcr do
       "thumbnail"=>"https://i.ytimg.com/vi/c2UnIQ3LRnM/hqdefault.jpg",
       "position"=>4
     })
-
 
     @mod_1_tutorial_data = {
       "title"=>"Back End Engineering - Module 1",
