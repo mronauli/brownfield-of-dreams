@@ -13,14 +13,12 @@ class GithubService
   def get_follower_data
     response = conn.get("/user/followers")
     json = JSON.parse(response.body, symbolize_names: true)
-    # require "pry"; binding.pry
 
   end
 
   def get_following_data
     response = conn.get("/user/following")
     json = JSON.parse(response.body, symbolize_names: true)
-    # require "pry"; binding.pry
   end
 
   private
@@ -29,7 +27,6 @@ class GithubService
     Faraday.new(url: "https://api.github.com") do |f|
       f.headers["Authorization"] = "token #{user_token}"
       f.adapter Faraday.default_adapter
-      require "pry"; binding.pry
     end
   end
 end
