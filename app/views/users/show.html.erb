@@ -46,7 +46,6 @@
 
       <h4>Friends:</h4>
       <section id='friends'>
-        <% binding.pry %>
         <% current_user.friends.each do |friend| %>
           <%= friend.first_name friend.last_name %>
         <% end %>
