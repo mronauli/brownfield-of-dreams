@@ -12,7 +12,7 @@ describe "as a logged in user" do
     within ("#github_section") do
       expect(page).to have_content("Github")
       expect(page).to have_content("Followers")
-      expect(page).to have_css('.followers')
+      expect(page).to have_css('#followers')
     end
   end
 end
