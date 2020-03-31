@@ -8,8 +8,6 @@ class Follower
   end
 
   def find_by_id
-    # require "pry"; binding.pry
-    # User.where(github_id: id)
     User.exists?(github_id: github_id)
   end
 end
