@@ -25,7 +25,7 @@ class GithubService
       f.adapter Faraday.default_adapter
     end
   end
-  
+
   def get_url(url)
     response = conn.get("/user/#{url}")
     JSON.parse(response.body, symbolize_names: true)

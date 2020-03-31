@@ -8,15 +8,11 @@ describe "as a logged in user" do
 
     visit "/dashboard"
     expect(current_path).to eq("/dashboard")
-    
+
     within ("#github_section") do
       expect(page).to have_content("Github")
       expect(page).to have_content("Followers")
-      expect(page).to have_css('#followers', count: 1)
-
-      within ("#followers") do
-        expect(page).to have_link("gregoryanderson", href: "https://github.com/gregoryanderson")
-      end
+      expect(page).to have_css('#followers')
     end
   end
 end
