@@ -29,7 +29,7 @@
         <% @github_info.get_followers.each do |follower| %>
           <li><%= link_to follower.login, follower.html_url %>
           <% if follower.find_by_id %>
-            <%= button_to "Add as Friend", "/friendships", method: :post %>
+          <%=  button_to "Add as Friend", controller: "friendships", action: "create", method: "post", params: {github_id: follower.github_id} %>
           <% end %>
         <% end %>
       </section>
@@ -46,8 +46,11 @@
 
       <h4>Friends:</h4>
       <section id='friends'>
+        <% binding.pry %>
+        <% current_user.friends.each do |friend| %>
+          <%= friend.first_name friend.last_name %>
+        <% end %>
       </section>
-
     </section>
   </section>
   <% end %>
