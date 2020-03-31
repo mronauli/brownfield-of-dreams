@@ -6,19 +6,15 @@ class GithubService
   end
 
   def get_repository_data
-    response = conn.get("/user/repos")
-    json = JSON.parse(response.body, symbolize_names: true)
+    get_url("repos")
   end
 
   def get_follower_data
-    response = conn.get("/user/followers")
-    json = JSON.parse(response.body, symbolize_names: true)
-
+    get_url("followers")
   end
 
   def get_following_data
-    response = conn.get("/user/following")
-    json = JSON.parse(response.body, symbolize_names: true)
+    get_url("following")
   end
 
   private
@@ -28,5 +24,10 @@ class GithubService
       f.headers["Authorization"] = "token #{user_token}"
       f.adapter Faraday.default_adapter
     end
+  end
+
+  def get_url(url)
+    response = conn.get("/user/#{url}")
+    JSON.parse(response.body, symbolize_names: true)
   end
 end
