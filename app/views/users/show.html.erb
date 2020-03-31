@@ -11,10 +11,17 @@
   </ul>
   <section>
     <h1>Bookmarked Segments</h1>
+    <% if !@videos.nil? %>
+    <section id="bookmarks">
+    <% @videos.each do |video| %>
+      <li><%= link_to video.title, video_path(video) %>
+    <% end %>
+  </section>
+  <% end %>
   </section>
   <section id="github_section">
     <h2>Github:</h2>
-    <% if current_user.token.nil? %>
+    <% if current_user.token.nil? || @github_info.nil? %>
       <%= "Must sign in with Github" %>
     <% else %>
       <h4>Repositories:</h4>
