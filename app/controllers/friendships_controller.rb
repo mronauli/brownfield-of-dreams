@@ -1,7 +1,12 @@
 class FriendshipsController < ApplicationController
   def create
     friend = User.find_by_github_id(params[:github_id])
-    Friendship.create!(user: current_user, friend: friend)
+    if friend 
+      Friendship.create(user: current_user, friend: friend)
+      current_user.reload
+    else
+      flash[:error] = "Sorry, that's an invalid ID!"
+    end
     redirect_to dashboard_path
   end
 
