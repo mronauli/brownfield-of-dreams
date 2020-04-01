@@ -17,4 +17,22 @@ feature "An admin can delete a tutorial" do
 
     expect(page).to have_css('.admin-tutorial-card', count: 1)
   end
+
+  it "deletes videos when tutorial is deleted" do
+    admin = create(:admin)
+    tutorial = create(:tutorial)
+    video_1 = create(:video, tutorial_id: tutorial.id)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+
+    visit "/admin/dashboard"
+    expect(Video.all.count).to eq(1)
+
+    expect(page).to have_css('.admin-tutorial-card', count: 1)
+
+    within(first('.admin-tutorial-card')) do
+      click_link 'Delete'
+    end
+
+    expect(Video.all.count).to eq(0)
+  end
 end
