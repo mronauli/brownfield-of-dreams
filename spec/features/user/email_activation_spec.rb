@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "As a visitor" do
+RSpec.describe "As a visitor", :vcr do
   before :each do
     email = 'jimbob@aol.com'
     first_name = 'Jim'
