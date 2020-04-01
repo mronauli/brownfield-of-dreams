@@ -1,3 +1,5 @@
+Rails.application.routes.default_url_options[:host] = "brown-field-mr-ag.herokuapp.com"
+
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
@@ -38,7 +40,12 @@ Rails.application.routes.draw do
   # Is this being used?
   get '/video', to: 'video#show'
 
-  resources :users, only: [:new, :create, :update, :edit]
+  resources :users, only: [:new, :create, :update, :edit] do
+    member do
+      get :confirm_email
+    end
+  end
+
 
   resources :tutorials, only: [:show, :index] do
     resources :videos, only: [:show, :index]
