@@ -59,15 +59,4 @@ RSpec.describe "As a user I can add friends who are in the DB but not those who 
       expect(page).to have_content("Maria Ronauli")
     end
   end
-# describe "add friend", type: :request  do
-#   it "can't add a friend with invalid id" do
-#       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(alex)
-#       expect(current_path).to eq(dashboard_path)
-#
-#       post "/friendships?github_id=55555555"
-#       expect(current_path).to eq(dashboard_path)
-#
-#       expect(page).to have_content("Sorry, that's an invalid ID!")
-#     end
-#   end
 end
