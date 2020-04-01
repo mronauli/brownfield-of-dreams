@@ -22,11 +22,11 @@ class UsersController < ApplicationController
   end
 
   def confirm_email
-    @user = User.find_by_confirm_token(params[:id])
+    @user = User.find_by_confirm_token(params[:confirm_token])
     if @user
       @user.email_activate
-      flash[:success] = "Welcome! Your email has been confirmed."
-      redirect_to signin_url
+      flash[:success] = "Thank you! Your account is now activated."
+      redirect_to dashboard_path
     else
       flash[:error] = "Sorry. User does not exist"
       redirect_to root_url
