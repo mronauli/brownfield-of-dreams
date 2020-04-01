@@ -5,9 +5,7 @@ class FriendshipsController < ApplicationController
       Friendship.create(user: current_user, friend: friend)
       current_user.reload
       flash[:success] = "Friend added!"
-    else
-      flash.now[:notice] = "Sorry, that's an invalid ID!"
+      redirect_to dashboard_path
     end
-    redirect_to dashboard_path
   end
 end
