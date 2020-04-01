@@ -16,20 +16,17 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to dashboard_path
     else
-      flash[:error] = 'Username already exists'
+      flash[:error] = 'E-mail already exists'
       render :new
     end
   end
 
   def confirm_email
-    @user = User.find_by_confirm_token(params[:confirm_token])
+    @user = User.find_by_confirm_token(params[:id])
     if @user
       @user.email_activate
       flash[:success] = "Thank you! Your account is now activated."
       redirect_to dashboard_path
-    else
-      flash[:error] = "Sorry. User does not exist"
-      redirect_to root_url
     end
   end
 
