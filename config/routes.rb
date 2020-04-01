@@ -1,5 +1,3 @@
-Rails.application.routes.default_url_options[:host] = "brown-field-mr-ag.herokuapp.com"
-
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
