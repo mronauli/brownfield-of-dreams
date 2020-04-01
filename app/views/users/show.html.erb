@@ -1,5 +1,13 @@
 <section class="dashboard-main">
   <h1> <%= current_user.first_name %>'s Dashboard </h1>
+  <% if current_user != nil %>
+    <h3> Logged in as <%= current_user.first_name %>  <%= current_user.last_name %></h3>
+  <% end %>
+  <% if current_user.email_confirmed == false %>
+    <h5>This account has not yet been activated. Please check your email. </h5>
+  <% end %>
+
+
   <% if current_user.token.nil? %>
     <%= button_to "Connect to Github", github_login_path, class: "btn btn-primary mb1 bg-teal" %>
   <% end %>
