@@ -40,7 +40,6 @@
          <li><%= link_to repo.name, repo.html_url %>
        </section>
     <% end %>
-    <%=  link_to "Send an Invite", controller: "invites", action: "new", method: "get" %>
       <h4>Followers:</h4>
       <section id="followers">
         <% @github_info.get_followers.each do |follower| %>
