@@ -1,5 +1,15 @@
 <section class="dashboard-main">
   <h1> <%= current_user.first_name %>'s Dashboard </h1>
+  <% if current_user != nil %>
+    <h3> Logged in as <%= current_user.first_name %>  <%= current_user.last_name %></h3>
+  <% end %>
+  <% if current_user.email_confirmed == false %>
+    <h5>This account has not yet been activated. Please check your email. </h5>
+    <% else %>
+      <%= "Status: Active" %>
+  <% end %>
+
+
   <% if current_user.token.nil? %>
     <%= button_to "Connect to Github", github_login_path, class: "btn btn-primary mb1 bg-teal" %>
   <% end %>
@@ -21,7 +31,7 @@
   </section>
   <section id="github_section">
     <h2>Github:</h2>
-    <% if current_user.token.nil? || @github_info.nil? %>
+    <% if current_user.token.nil? %>
       <%= "Must sign in with Github" %>
     <% else %>
       <h4>Repositories:</h4>
@@ -30,7 +40,7 @@
          <li><%= link_to repo.name, repo.html_url %>
        </section>
     <% end %>
-
+    <%=  link_to "Send an Invite", controller: "invites", action: "new", method: "get" %>
       <h4>Followers:</h4>
       <section id="followers">
         <% @github_info.get_followers.each do |follower| %>
