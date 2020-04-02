@@ -31,4 +31,15 @@ describe 'A registered user' do
     click_on 'Bookmark'
     expect(page).to have_content("Already in your bookmarks")
   end
+
+  it 'cannot add videos to their bookmarks if not logged in' do
+    tutorial= create(:tutorial, title: "How to Tie Your Shoes")
+    video = create(:video, title: "The Bunny Ears Technique", tutorial: tutorial)
+
+    visit tutorial_path(tutorial)
+    
+    expect(page).to_not have_button("Bookmark")
+    expect(page).to have_content("User must login to bookmark videos.")
+    expect(page).to have_link("Login")
+  end
 end
