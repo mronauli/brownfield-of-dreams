@@ -1,24 +1,26 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-describe 'A registered user' do
+describe 'A registered user' do # rubocop:todo Metrics/BlockLength
   it 'can add videos to their bookmarks' do
-    tutorial= create(:tutorial, title: "How to Tie Your Shoes")
-    video = create(:video, title: "The Bunny Ears Technique", tutorial: tutorial)
+    tutorial = create(:tutorial, title: 'How to Tie Your Shoes')
+    video = create(:video, title: 'The Bunny Ears Technique', tutorial: tutorial)
     user = create(:user)
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
     visit tutorial_path(tutorial)
 
-    expect {
+    expect do
       click_on 'Bookmark'
-    }.to change { UserVideo.count }.by(1)
+    end.to change { UserVideo.count }.by(1)
 
-    expect(page).to have_content("Bookmark added to your dashboard")
+    expect(page).to have_content('Bookmark added to your dashboard')
   end
 
   it "can't add the same bookmark more than once" do
-    tutorial= create(:tutorial)
+    tutorial = create(:tutorial)
     video = create(:video, tutorial_id: tutorial.id)
     user = create(:user)
 
@@ -27,19 +29,19 @@ describe 'A registered user' do
     visit tutorial_path(tutorial)
 
     click_on 'Bookmark'
-    expect(page).to have_content("Bookmark added to your dashboard")
+    expect(page).to have_content('Bookmark added to your dashboard')
     click_on 'Bookmark'
-    expect(page).to have_content("Already in your bookmarks")
+    expect(page).to have_content('Already in your bookmarks')
   end
 
   it 'cannot add videos to their bookmarks if not logged in' do
-    tutorial= create(:tutorial, title: "How to Tie Your Shoes")
-    video = create(:video, title: "The Bunny Ears Technique", tutorial: tutorial)
+    tutorial = create(:tutorial, title: 'How to Tie Your Shoes')
+    video = create(:video, title: 'The Bunny Ears Technique', tutorial: tutorial)
 
     visit tutorial_path(tutorial)
-    
-    expect(page).to_not have_button("Bookmark")
-    expect(page).to have_content("User must login to bookmark videos.")
-    expect(page).to have_link("Login")
+
+    expect(page).to_not have_button('Bookmark')
+    expect(page).to have_content('User must login to bookmark videos.')
+    expect(page).to have_link('Login')
   end
 end
