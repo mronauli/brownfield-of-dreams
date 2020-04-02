@@ -12,9 +12,9 @@
         <%= link_to "Profile", dashboard_path %>
       </div>
       <% if current_user.admin? %>
-      <div class="align-middle table-cell p3">
-        <%= link_to "Admin", admin_dashboard_path %>
-      </div>
+        <div class="align-middle table-cell p3">
+          <%= link_to "Admin", admin_dashboard_path %>
+        </div>
       <% end %>
     <% else %>
       <div class="align-middle table-cell p3">
