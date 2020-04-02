@@ -11,14 +11,14 @@ class ApplicationController < ActionController::Base
   end
 
   def find_bookmark(id)
-    current_user.user_videos.find_by(video_id: id)
+    # current_user.user_videos.find_by(video_id: id)
   end
 
   def tutorial_name(id)
-    Tutorial.find(id).title
+    # Tutorial.find(id).title
   end
 
   def four_oh_four
-    raise ActionController::RoutingError.new('Not Found')
+    # raise ActionController::RoutingError.new('Not Found')
   end
 end
