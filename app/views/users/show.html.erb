@@ -1,14 +1,19 @@
 <section class="dashboard-main">
-  <h1> <%= current_user.first_name %>'s Dashboard </h1>
+  <h1>
+    <%= current_user.first_name %>'s Dashboard
+  </h1>
   <% if current_user != nil %>
-    <h3> Logged in as <%= current_user.first_name %>  <%= current_user.last_name %></h3>
+    <h3>
+      Logged in as
+      <%= current_user.first_name %>
+      <%= current_user.last_name %></h3>
   <% end %>
   <% if current_user.email_confirmed == false %>
-    <h5>This account has not yet been activated. Please check your email. </h5>
+    <h5>This account has not yet been activated. Please check your email.
+    </h5>
   <% else %>
     <%= "Status: Active" %>
   <% end %>
-
 
   <% if current_user.token.nil? %>
     <%= button_to "Connect to Github", github_login_path, class: "btn btn-primary mb1 bg-teal" %>
@@ -16,57 +21,62 @@
   <%= button_to 'Log Out', logout_path, method: 'delete', class: "btn btn-primary mb1 bg-teal" %>
   <h3>Account Details</h3>
   <ul>
-    <li> <%= current_user.first_name  %> <%= current_user.last_name %> </li>
-    <li> <%= current_user.email%> </li>
+    <li>
+      <%= current_user.first_name %>
+      <%= current_user.last_name %>
+    </li>
+    <li>
+      <%= current_user.email%>
+    </li>
   </ul>
   <section>
     <h1>Bookmarked Segments</h1>
     <% if !@videos.nil? %>
-    <section id="bookmarks">
-    <% @videos.each do |video| %>
-      <li><%= link_to video.title, video_path(video) %>
-    <% end %>
-  </section>
-  <% end %>
-  </section>
-  <section id="github_section">
-    <h2>Github:</h2>
-    <% if current_user.token.nil? %>
-      <%= "Must sign in with Github" %>
-    <% else %>
-    <%=  link_to "Send an Invite", controller: "invites", action: "new", method: "get" %>
-      <h4>Repositories:</h4>
-      <% @github_info.get_repositories.each do |repo| %>
-        <section id="repo">
-         <li><%= link_to repo.name, repo.html_url %>
-       </section>
-    <% end %>
-      <h4>Followers:</h4>
-      <section id="followers">
-        <% @github_info.get_followers.each do |follower| %>
-          <li><%= link_to follower.login, follower.html_url %>
-          <% if follower.find_by_id %>
-          <%=  button_to "Add as Friend", controller: "friendships", action: "create", method: "post", params: {github_id: follower.github_id} %>
+      <section id="bookmarks">
+        <% @videos.each do |video| %>
+          <li><%= link_to video.title, video_path(video) %>
           <% end %>
-        <% end %>
-      </section>
-
-      <h4>Following:</h4>
-      <section id="following">
-        <% @github_info.get_following.each do |following| %>
-        <li><%= link_to following.login, following.html_url %>
-          <% if following.find_by_id %>
-          <%=  button_to "Add as Friend", controller: "friendships", action: "create", method: "post", params: {github_id: following.github_id} %>
-          <% end %>
-        <% end %>
-      </section>
-
-      <h4>Friends:</h4>
-      <section id='friends'>
-        <% current_user.friends.each do |friend| %>
-          <%= "#{friend.first_name} #{friend.last_name}" %>
-        <% end %>
-      </section>
+        </section>
+      <% end %>
     </section>
-  </section>
-  <% end %>
+    <section id="github_section">
+      <h2>Github:</h2>
+      <% if current_user.token.nil? %>
+        <%= "Must sign in with Github" %>
+      <% else %>
+        <%= link_to "Send an Invite", controller: "invites", action: "new", method: "get" %>
+        <h4>Repositories:</h4>
+        <% @github_info.get_repositories.each do |repo| %>
+          <section id="repo">
+            <li><%= link_to repo.name, repo.html_url %>
+            </section>
+          <% end %>
+          <h4>Followers:</h4>
+          <section id="followers">
+            <% @github_info.get_followers.each do |follower| %>
+              <li><%= link_to follower.login, follower.html_url %>
+                <% if follower.find_by_id %>
+                  <%= button_to "Add as Friend", controller: "friendships", action: "create", method: "post", params: {github_id: follower.github_id} %>
+                <% end %>
+              <% end %>
+            </section>
+
+            <h4>Following:</h4>
+            <section id="following">
+              <% @github_info.get_following.each do |following| %>
+                <li><%= link_to following.login, following.html_url %>
+                  <% if following.find_by_id %>
+                    <%= button_to "Add as Friend", controller: "friendships", action: "create", method: "post", params: {github_id: following.github_id} %>
+                  <% end %>
+                <% end %>
+              </section>
+
+              <h4>Friends:</h4>
+              <section id='friends'>
+                <% current_user.friends.each do |friend| %>
+                  <%= "#{friend.first_name} #{friend.last_name}" %>
+                <% end %>
+              </section>
+            </section>
+          </section>
+        <% end %>

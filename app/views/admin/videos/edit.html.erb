@@ -1,13 +1,13 @@
 <div class="tag-field">
   <%= form_for [:admin, @video] do |f| %>
 
-    <%= f.label :title, "Separted by commas", class: "block" %>
-    <%= f.text_field :title, class: "field block" %><br>
-    <%= f.label :description, "Separted by commas", class: "block" %>
-    <%= f.text_field :description, class: "field block" %><br>
-    <%= f.label "Youtube ID", "Separted by commas", class: "block" %>
-    <%= f.text_field :video_id, class: "field block" %><br>
+  <%= f.label :title, "Separted by commas", class: "block" %>
+  <%= f.text_field :title, class: "field block" %><br>
+  <%= f.label :description, "Separted by commas", class: "block" %>
+  <%= f.text_field :description, class: "field block" %><br>
+  <%= f.label "Youtube ID", "Separted by commas", class: "block" %>
+  <%= f.text_field :video_id, class: "field block" %><br>
 
-    <%= f.submit "Update Video", class: "video-position-submit btn btn-outline" %>
-  <% end %>
+  <%= f.submit "Update Video", class: "video-position-submit btn btn-outline" %>
+<% end %>
 </div>

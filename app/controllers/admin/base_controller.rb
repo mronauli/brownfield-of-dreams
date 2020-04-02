@@ -4,4 +4,4 @@ class Admin::BaseController < ApplicationController
   def require_admin!
     four_oh_four unless current_user.admin?
   end
-end
+end  
