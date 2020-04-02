@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
+# rubocop:todo Metrics/BlockLength
 describe 'vister can create an account', :js do
   it ' visits the home page' do
     email = 'jimbob@aol.com'
@@ -24,7 +27,7 @@ describe 'vister can create an account', :js do
     fill_in 'user[password]', with: password
     fill_in 'user[password_confirmation]', with: password
 
-    click_on'Create Account'
+    click_on 'Create Account'
 
     expect(current_path).to eq(dashboard_path)
 
@@ -34,7 +37,7 @@ describe 'vister can create an account', :js do
     expect(page).to_not have_content('Sign In')
   end
 
-  it "cannot register with taken email" do
+  it 'cannot register with taken email' do
     user = create(:user)
 
     first_name = 'Jim'
@@ -58,8 +61,9 @@ describe 'vister can create an account', :js do
     fill_in 'user[password]', with: password
     fill_in 'user[password_confirmation]', with: password
 
-    click_on'Create Account'
+    click_on 'Create Account'
 
     expect(page).to have_content('E-mail already exists')
   end
 end
+# rubocop:enable Metrics/BlockLength

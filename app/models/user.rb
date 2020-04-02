@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   before_create :confirmation_token
 
@@ -10,7 +12,7 @@ class User < ApplicationRecord
   validates :email, uniqueness: true, presence: true
   validates_presence_of :password
   validates_presence_of :first_name
-  enum role: [:default, :admin]
+  enum role: %i[default admin]
   has_secure_password
 
   def email_activate
@@ -22,7 +24,7 @@ class User < ApplicationRecord
   private
 
   def confirmation_token
-    if self.confirm_token.blank?
+    if confirm_token.blank?
       self.confirm_token = SecureRandom.urlsafe_base64.to_s
     end
   end

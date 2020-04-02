@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-describe 'User', :vcr do
+describe 'User', :vcr do # rubocop:todo Metrics/BlockLength
   it 'user can sign in' do
     user = create(:user, token: ENV['GITHUB_ACCESS_TOKEN_2'])
 
     visit '/'
 
-    click_on "Sign In"
+    click_on 'Sign In'
 
     expect(current_path).to eq(login_path)
 
@@ -26,7 +28,7 @@ describe 'User', :vcr do
 
     visit '/'
 
-    click_on "Sign In"
+    click_on 'Sign In'
 
     expect(current_path).to eq(login_path)
 
@@ -44,16 +46,16 @@ describe 'User', :vcr do
 
   it 'is shown an error when incorrect info is entered', :vcr do
     user = create(:user)
-    fake_email = "email@email.com"
-    fake_password = "123"
+    fake_email = 'email@email.com'
+    fake_password = '123'
 
     visit login_path
 
-    fill_in'session[email]', with: fake_email
-    fill_in'session[password]', with: fake_password
+    fill_in 'session[email]', with: fake_email
+    fill_in 'session[password]', with: fake_password
 
     click_on 'Log In'
 
-    expect(page).to have_content("Looks like your email or password is invalid")
+    expect(page).to have_content('Looks like your email or password is invalid')
   end
 end
