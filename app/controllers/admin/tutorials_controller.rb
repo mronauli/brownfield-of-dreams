@@ -3,11 +3,19 @@ class Admin::TutorialsController < Admin::BaseController
     @tutorial = Tutorial.find(params[:id])
   end
 
-  def create
+  def new
+    @tutorial = Tutorial.new
   end
 
-  def new
-    # @tutorial = Tutorial.new
+  def create
+    @tutorial = Tutorial.new(tutorial_params)
+    if @tutorial.save
+      flash[:success] = "Tutorial created!"
+      redirect_to tutorial_path(@tutorial)
+    else
+      flash[:error] = "Please fill in all fields."
+      redirect_to new_admin_tutorial_path
+    end
   end
 
   def update
@@ -28,6 +36,6 @@ class Admin::TutorialsController < Admin::BaseController
 
   private
   def tutorial_params
-    params.require(:tutorial).permit(:tag_list)
+    params.require(:tutorial).permit(:tag_list, :title, :description, :thumbnail, :playlist_id, :classroom)
   end
 end

@@ -15,7 +15,8 @@
 
 <div class="col col-8">
   <div class="title-bookmark">
-    <h3><%= @facade.current_video.title %></h3>
+    <% if !@facade.current_video.nil? && !@facade.next_video.nil?  %>
+      <h3><%= @facade.current_video.title %></h3>
     <div class="bookmarks-btn">
       <% if current_user %>
       <%= button_to "Bookmark", user_videos_path(video_id: @facade.current_video.id, user_id: current_user.id), method: :post, class: "btn btn-outline mb1 teal" %>
@@ -42,12 +43,10 @@
         }
       });
     }
-
     // autoplay video
     function onPlayerReady(event) {
       event.target.playVideo();
     }
-
     // when video ends
     function onPlayerStateChange(event) {
       if(event.data === 0 && <%= @facade.play_next_video? %>) {
@@ -66,5 +65,5 @@
     <%= link_to "More", "#", "data-action" => "click->tutorials#showDescription", id: @facade.current_video.id, class: "show-link"%>
   </p>
 </div>
-
+<% end %>
 </main>

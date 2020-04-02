@@ -31,7 +31,6 @@ RSpec.describe "As a visitor" do
     path_regex = /(?:"https?\:\/\/.*?)(\/.*?)(?:")/
     path = mail.match(path_regex)[1]
     visit(path)
-    # require "pry"; binding.pry
     expect(page).to have_content("Thank you! Your account is now activated.")
     visit dashboard_path
     expect(page).to have_content("Status: Active")
