@@ -1,13 +1,3 @@
-# As a registered user
-# When I visit /dashboard
-# And I click "Send an Invite"
-# Then I should be on /invite
-#
-# And when I fill in "Github Handle" with <A VALID GITHUB HANDLE>
-# And I click on "Send Invite"
-# Then I should be on /dashboard
-# And I should see a message that says "Successfully sent invite!" (if the user has an email address associated with their github account)
-# Or I should see a message that says "The Github user you selected doesn't have an email address associated with their account."
 require "rails_helper"
 
 RSpec.describe "as a registered user", :vcr do
