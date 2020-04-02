@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   def show
     @github_info = GithubSearchFacade.new(current_user.token)
     @videos = UserVideo.order_bookmarked(current_user.id)

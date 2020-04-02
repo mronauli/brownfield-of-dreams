@@ -5,8 +5,8 @@ class UserVideo < ApplicationRecord
 
   def self.order_bookmarked(user_id)
     User.find_by_id(user_id)
-    .videos.joins(:tutorial)
-    .order("tutorials.id")
-    .order("videos.position")
+        .videos.joins(:tutorial)
+        .order("tutorials.id")
+        .order("videos.position")
   end
 end

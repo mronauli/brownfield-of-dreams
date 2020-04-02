@@ -105,3 +105,15 @@ Layout/LineLength:
 
 Metrics/AbcSize:
   Max: 20
+
+Style/RedundantPercentQ:
+  Enabled: false
+
+Style/HashEachMethods:
+  Enabled: false
+
+Style/HashTransformKeys:
+  Enabled: false
+  
+Style/HashTransformValues:
+  Enabled: false

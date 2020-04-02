@@ -5,15 +5,15 @@ class GithubService
     @user_token = user_token
   end
 
-  def get_repository_data
+  def get_repository_data # rubocop:todo Naming/AccessorMethodName
     get_url("/user/repos")
   end
 
-  def get_follower_data
+  def get_follower_data # rubocop:todo Naming/AccessorMethodName
     get_url("/user/followers")
   end
 
-  def get_following_data
+  def get_following_data # rubocop:todo Naming/AccessorMethodName
     get_url("/user/following")
   end
 
@@ -31,7 +31,7 @@ class GithubService
   end
 
   def get_url(url)
-    response = conn.get("#{url}")
+    response = conn.get(url.to_s)
     JSON.parse(response.body, symbolize_names: true)
   end
 end

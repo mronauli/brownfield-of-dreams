@@ -17,19 +17,19 @@ class GithubSearchFacade
     service.get_following_data
   end
 
-  def get_repositories
+  def get_repositories # rubocop:todo Naming/AccessorMethodName
     repository_data.map do |repo|
       Repository.new(repo)
     end
   end
 
-  def get_followers
+  def get_followers # rubocop:todo Naming/AccessorMethodName
     follower_data.map do |follower|
       Follower.new(follower)
     end
   end
 
-  def get_following
+  def get_following # rubocop:todo Naming/AccessorMethodName
     following_data.map do |following|
       Following.new(following)
     end

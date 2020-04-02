@@ -1,7 +1,7 @@
 class InvitesController < ApplicationController
   skip_before_action :verify_authenticity_token
 
-  def create
+  def create # rubocop:todo Metrics/MethodLength
     handle = params[:github_handle]
     service = GithubService.new(current_user.token)
     data = service.get_github_user_data(handle)
