@@ -6,15 +6,19 @@ class GithubService
   end
 
   def get_repository_data
-    get_url("repos")
+    get_url("/user/repos")
   end
 
   def get_follower_data
-    get_url("followers")
+    get_url("/user/followers")
   end
 
   def get_following_data
-    get_url("following")
+    get_url("/user/following")
+  end
+
+  def get_github_user_data(handle)
+    get_url("/users/#{handle}")
   end
 
   private
@@ -27,7 +31,7 @@ class GithubService
   end
 
   def get_url(url)
-    response = conn.get("/user/#{url}")
+    response = conn.get("#{url}")
     JSON.parse(response.body, symbolize_names: true)
   end
 end

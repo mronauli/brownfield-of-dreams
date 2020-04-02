@@ -34,6 +34,7 @@
     <% if current_user.token.nil? %>
       <%= "Must sign in with Github" %>
     <% else %>
+    <%=  link_to "Send an Invite", controller: "invites", action: "new", method: "get" %>
       <h4>Repositories:</h4>
       <% @github_info.get_repositories.each do |repo| %>
         <section id="repo">
