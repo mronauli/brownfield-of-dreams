@@ -1,3 +1,6 @@
+# rubocop:todo Style/Documentation
+# frozen_string_literal: true
+
 class CreateTutorials < ActiveRecord::Migration[5.2]
   def change
     create_table :tutorials do |t|
@@ -11,3 +14,4 @@ class CreateTutorials < ActiveRecord::Migration[5.2]
     end
   end
 end
+# rubocop:enable Style/Documentation

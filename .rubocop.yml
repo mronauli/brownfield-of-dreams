@@ -105,3 +105,6 @@ Layout/LineLength:
 
 Metrics/AbcSize:
   Max: 20
+
+Style/RedundantPercentQ:
+  Enabled: false

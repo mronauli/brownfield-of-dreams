@@ -1,25 +1,27 @@
-require "rails_helper"
+# frozen_string_literal: true
 
-context "as a logged in user" do
-  describe "when it connects to Github", :vcr do
-    it "can see its repository" do
+require 'rails_helper'
+
+context 'as a logged in user' do
+  describe 'when it connects to Github', :vcr do
+    it 'can see its repository' do
       user = create(:user)
 
       visit '/'
-      click_on "Sign In"
+      click_on 'Sign In'
 
       fill_in 'session[email]', with: user.email
       fill_in 'session[password]', with: user.password
 
       click_on 'Log In'
 
-      visit "/dashboard"
-      expect(page).to_not have_content("battleship")
+      visit '/dashboard'
+      expect(page).to_not have_content('battleship')
       mock_auth_hash
-      click_button "Connect to Github"
+      click_button 'Connect to Github'
 
-      expect(current_path).to eq("/dashboard")
-      expect(page).to have_content("battleship")
+      expect(current_path).to eq('/dashboard')
+      expect(page).to have_content('battleship')
     end
   end
 end
