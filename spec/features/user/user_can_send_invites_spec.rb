@@ -23,11 +23,11 @@ RSpec.describe "as a registered user", :vcr do
       fill_in :github_handle, with: "dionew1"
       click_on "Send Invite"
       email = ActionMailer::Base.deliveries.last
-      expect(email).to have_content(/"#{@user.first_name}} has sent you and invite!" /)
+      expect(email).to have_content(/#{@user.first_name} #{@user.last_name} has invited you to join brownfield-of-dreams!/)
       expect(current_path).to eq(dashboard_path)
       expect(page).to have_content "Successfully sent invite!"
     end
-    xit "cannot send email if invitee doesn't have email associated with github account" do
+    it "cannot send email if invitee doesn't have email associated with github account" do
       visit "/dashboard"
       click_on "Send an Invite"
       expect(current_path).to eq("/invite")
