@@ -17,9 +17,8 @@ class GithubService
     get_url("/user/following")
   end
 
-  def get_user(username)
-    get_url("/users/#{username}")
-    require "pry"; binding.pry
+  def get_github_user_data(handle)
+    get_url("/users/#{handle}")
   end
 
   private
