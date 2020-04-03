@@ -38,7 +38,7 @@ Rails.application.routes.draw do # rubocop:todo Metrics/BlockLength
   get '/about', to: 'about#show'
   get '/get_started', to: 'get_started#show'
   get '/auth/github', as: 'github_login'
-  get '/auth/github/callback', to: 'sessions#update'
+  get '/auth/:provider/callback', to: 'sessions#update'
 
   resources :friendships, only: [:create]
   # Is this being used?
