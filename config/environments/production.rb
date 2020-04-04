@@ -97,7 +97,7 @@ Rails.application.configure do # rubocop:todo Metrics/BlockLength
      domain:               'heroku.com',
      address:              "smtp.sendgrid.net",
      port:                 587,
-     authentication:       :login,
+     authentication:       :plain,
      user_name:            "apikey",
      password:             ENV["SENDGRID_API_KEY"]
    }
