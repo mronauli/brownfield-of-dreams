@@ -94,13 +94,12 @@ Rails.application.configure do # rubocop:todo Metrics/BlockLength
   end
   config.action_mailer.delivery_method = :smtp
    config.action_mailer.smtp_settings = {
-     address:              'smtp.sendgrid.net',
-     port:                 '587',
      domain:               'heroku.com',
+     address:              'smtp.sendgrid.net',
+     port:                 587,
+     authentication:       :plain,
      user_name:            'apikey',
-     password:             ENV['SENDGRID_API_KEY'],
-     authentication:       'plain',
-     enable_starttls_auto: true
+     password:             ENV['SENDGRID_API_KEY']
    }
    config.action_mailer.default_url_options = { host: 'http://brown-field-mr-ag.herokuapp.com' }
    config.active_record.dump_schema_after_migration = false
